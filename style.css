@@ -1,0 +1,409 @@
+/* ==========================================================================
+   CSS STYLING FOR AURA BREW (SPECIALTY COFFEE & ROASTERY)
+   Clean, responsive layout built using HTML5 and CSS Flexbox.
+   ========================================================================== */
+
+/* 1. DESIGN SYSTEM & GENERAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #0f0b08;          /* Deep rich obsidian-coffee background */
+    --card-bg: #1a1410;           /* Dark chocolate-brown card background */
+    --primary-gold: #c89f65;      /* Warm latte gold for branding and highlights */
+    --primary-hover: #b38a52;     /* Darker gold for hover states */
+    --text-light: #faf6f0;        /* Soft milk-cream color for main headings and text */
+    --text-muted: #a69c94;        /* Muted gray-brown for descriptions and subtext */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    --transition: all 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-light);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Smooth scrolling when navigating via anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Helper Class for Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--primary-gold);
+    color: var(--bg-color);
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px); /* Subtle lift effect */
+    box-shadow: 0 5px 15px rgba(200, 159, 101, 0.3); /* Cozy amber glow */
+}
+
+/* ==========================================================================
+   2. NAVBAR (HEADER) SECTION
+   Uses Flexbox to distribute brand logo and links to opposite ends.
+   ========================================================================== */
+.header {
+    background-color: rgba(15, 11, 8, 0.95);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(200, 159, 101, 0.1);
+    backdrop-filter: blur(10px); /* Elegant glassmorphic blur */
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    
+    /* Flexbox Alignment */
+    display: flex;
+    justify-content: space-between; /* Pushes logo to left, nav-links to right */
+    align-items: center;            /* Centers logo and links vertically */
+}
+
+/* Brand Logo Styling */
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.logo span {
+    color: var(--primary-gold); /* Gold color for "Brew" */
+}
+
+/* Nav Links Wrapper */
+.nav-links {
+    /* Flexbox inside nav links to place links horizontally side-by-side */
+    display: flex;
+    gap: 30px; /* Modern spacing instead of margins */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transition);
+    padding-bottom: 4px;
+    position: relative;
+}
+
+/* Link Hover & Active Underlines */
+.nav-links a:hover, 
+.nav-links a.active {
+    color: var(--primary-gold);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-gold);
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   3. HERO SECTION
+   Uses Flexbox to create a balanced two-column desktop layout.
+   ========================================================================== */
+.hero-section {
+    max-width: 1200px;
+    margin: 120px auto 60px auto; /* Margin top accounts for fixed header */
+    padding: 60px 40px;
+    
+    /* Flexbox Alignment */
+    display: flex;
+    align-items: center;            /* Centers content and image vertically */
+    justify-content: space-between; /* Spreads content and image apart */
+    gap: 50px;                      /* Clean spacing between the columns */
+}
+
+/* Left Column: Title, Description, CTA */
+.hero-content {
+    flex: 1; /* Automatically takes up 50% width */
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.hero-desc {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 35px;
+    max-width: 500px; /* Keeps reading line length comfortable */
+}
+
+/* Right Column: Image Wrapper */
+.hero-image-wrapper {
+    flex: 1; /* Automatically takes up 50% width */
+    display: flex;
+    justify-content: center;
+}
+
+.hero-img {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(200, 159, 101, 0.15); /* Light golden border */
+    transition: var(--transition);
+}
+
+.hero-img:hover {
+    transform: scale(1.02); /* Interactive zoom-in on hover */
+}
+
+/* ==========================================================================
+   4. CARDS SECTION (OFFERINGS)
+   Uses Flexbox to distribute cards equally in a row.
+   ========================================================================== */
+.cards-section {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 40px;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--text-light);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-gold);
+    margin: 15px auto 0 auto;
+    border-radius: 2px;
+}
+
+/* Row wrapper for the 3 cards */
+.cards-container {
+    /* Flexbox Alignment */
+    display: flex;
+    justify-content: space-between; /* Evenly spaces cards across the container */
+    gap: 30px;                      /* Gap between individual cards */
+    flex-wrap: wrap;                /* Enables cards to wrap to next line on smaller screens */
+}
+
+/* Individual Card Styling */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    flex: 1;                        /* Allows all cards to grow/shrink equally */
+    min-width: 280px;               /* Prevents card from shrinking too narrow */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+    
+    /* Flexbox inside cards to align items neatly vertically */
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-8px); /* Premium card floating effect */
+    border-color: rgba(200, 159, 101, 0.3);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-img-wrapper {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops image cleanly without distortion */
+    transition: var(--transition);
+}
+
+.card:hover .card-img {
+    transform: scale(1.08); /* Zoom effect for premium touch */
+}
+
+.card-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Pushes the button to the bottom if description lengths differ */
+}
+
+.card-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    color: var(--text-light);
+}
+
+.card-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    flex-grow: 1; /* Consumes space, pushing the button down */
+}
+
+.card-btn {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid var(--primary-gold);
+    color: var(--primary-gold);
+    font-weight: 500;
+    text-align: center;
+}
+
+.card-btn:hover {
+    background-color: var(--primary-gold);
+    color: var(--bg-color);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   5. FOOTER SECTION
+   Uses Flexbox to arrange footer elements.
+   ========================================================================== */
+.footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: #080604;
+    padding: 40px;
+    margin-top: 100px;
+    
+    /* Flexbox Alignment */
+    display: flex;
+    justify-content: space-between; /* Pushes copyright to left, social-links to right */
+    align-items: center;            /* Centers vertically */
+    flex-wrap: wrap;                /* Prevents layout break on mobile screen width */
+    gap: 20px;
+}
+
+.copyright {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    color: var(--primary-gold);
+}
+
+/* ==========================================================================
+   6. RESPONSIVE MEDIA QUERIES (RESPONSIVENESS)
+   Adjusts layout for tablet and mobile devices.
+   ========================================================================== */
+
+/* Tablet Screens (under 992px width) */
+@media (max-width: 992px) {
+    .hero-section {
+        flex-direction: column; /* Stack hero content vertically */
+        text-align: center;
+        margin-top: 100px;
+        gap: 40px;
+    }
+    
+    .hero-desc {
+        margin-left: auto;
+        margin-right: auto; /* Centers text block description */
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .cards-container {
+        justify-content: center; /* Center cards on tablet */
+    }
+}
+
+/* Mobile Screens (under 600px width) */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column; /* Stack logo and nav links vertically */
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-desc {
+        font-size: 0.95rem;
+    }
+
+    .cards-section {
+        padding: 0 20px;
+    }
+
+    .footer {
+        flex-direction: column; /* Stack copyright and links vertically */
+        text-align: center;
+        gap: 15px;
+    }
+}
